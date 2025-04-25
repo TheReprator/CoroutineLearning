@@ -29,8 +29,8 @@ class RunTest {
             means that if you start a process that never ends, your test will never stop.
 
 
- runTestAutoAdvance(line 12) works because runTest automatically advances the virtual time until all tasks are completed —
-    so delay(line 14) gets resumed, and the test completes.
+ runTestAutoAdvance(line 14) works because runTest automatically advances the virtual time until all tasks are completed —
+    so delay(line 16) gets resumed, and the test completes.
 * */
 
     @Test

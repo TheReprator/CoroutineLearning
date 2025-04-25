@@ -161,9 +161,29 @@ private fun standardTestDispatcher_type4() {
 * */
 
 fun main() {
-    //standardTestDispatcher_type1()
-    //standardTestDispatcher_type2()
-    //standardTestDispatcher_type3_runForever()
-    //standardTestDispatcher_type3_runForever_fix()
+    println("standardTestDispatcher_type1() result")
+    println()
+    standardTestDispatcher_type1()
+
+    println()
+    println()
+    println("standardTestDispatcher_type2() result")
+    standardTestDispatcher_type2()
+
+    /*println()
+    println()
+    println("standardTestDispatcher_type3_runForever() result")
+    standardTestDispatcher_type3_runForever()*/
+
+    println()
+    println()
+    println("standardTestDispatcher_type3_runForever_fix() result")
+    standardTestDispatcher_type3_runForever_fix()
+
+    println()
+    println()
+    println("standardTestDispatcher_type4() result")
     standardTestDispatcher_type4()
 }
+
+//https://github.com/Kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-test/README.md

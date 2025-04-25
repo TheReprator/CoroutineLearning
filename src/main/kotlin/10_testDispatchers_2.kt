@@ -87,6 +87,11 @@ image/10_testScope_hierarchy.png for the hierarchy
 */
 
 fun main() {
-    //standardTestDispatcher2_type1()
+    println("standardTestDispatcher2_type1() result")
+    standardTestDispatcher2_type1()
+
+    println()
+    println()
+    println("testScope() result")
     testScope()
 }
