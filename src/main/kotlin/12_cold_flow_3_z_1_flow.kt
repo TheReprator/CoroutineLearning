@@ -81,7 +81,7 @@ private fun usersFlow(): Flow<String> = flow {
     }
 }
 
-fun main(): Unit = runBlocking {
+private fun flow_type1(): Unit = runBlocking {
     val users = usersFlow()
     withContext(CoroutineName("Name")) {
         val job = launch {
@@ -107,6 +107,36 @@ fun main(): Unit = runBlocking {
  Here you can see "Done! vvv" is printed at last in the coroutine 87, which proves are statement(line 64-65)
 
 * */
+
+fun flow_type2(): Unit = runBlocking {
+    val coldFlow = flow {
+        println("Flow started")
+        emit(1)
+        emit(2)
+    }
+    coldFlow.collect { println("Collector 1: $it") }
+    coldFlow.collect { println("Collector 2: $it") }
+}
+
+/*
+Output:
+    Flow started
+    Collector 1: 1
+    Collector 1: 2
+    Flow started
+    Collector 2: 1
+    Collector 2: 2
+
+Observation:
+    Cold flow restarts for each collector
+* */
+
+fun main(): Unit = runBlocking {
+    flow_type1()
+    println()
+    println()
+    flow_type2()
+}
 
 
 
