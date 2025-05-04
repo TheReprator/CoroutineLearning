@@ -4,6 +4,8 @@ import kotlinx.coroutines.*
 
 suspend fun main() = coroutineScope {
     type1()
+    println()
+    println()
     type2()
 }
 
@@ -29,7 +31,7 @@ private suspend fun type1()= coroutineScope {
 }
 /*
 * NonCancellable(line 18): It is basically a job that cannot be cancelled and is
-* active in state. We can call whatever suspending function(19),  we want inside it
+* active in state. We can call whatever suspending function(21),  we want inside it
 * */
 
 private suspend fun type2() = coroutineScope {
@@ -43,10 +45,6 @@ private suspend fun type2() = coroutineScope {
             withContext(NonCancellable) {
                 delay(1000L)
                 println("cleanup now")
-                /*launch {
-                    delay(2000L)
-                    println("job cancel vikram")
-                }*/
                 try {
                     coroutineContext[Job]?.cancelAndJoin()
                 } catch (e: Exception) {
@@ -64,6 +62,6 @@ private suspend fun type2() = coroutineScope {
 }
 
 /*
-* Once we have suspension(line 48) inside launch builders(line 47) or cancel job(line 52) inside NonCancellable,
-* then line no 58 will not be printed in that case
+Here line 55, is never printed because the active non canellable job(line 45) is being cancelled in line 49.
+It terminate abnormally, depending on the internal coroutine implementation.
 * */

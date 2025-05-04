@@ -5,7 +5,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-fun main(args: Array<String>) = runBlocking {
+fun main(args: Array<String>): Unit = runBlocking {
     val job1 = Job()
     launch(job1) {
         repeat(5) {
@@ -24,9 +24,6 @@ fun main(args: Array<String>) = runBlocking {
     job1.join()
     launch(job1) {
         println("will not execute, as job is already completed!")
-    }
-    //
-    fun main(args: Array<String>) {
     }
 }
 

@@ -15,7 +15,6 @@ import kotlin.system.measureTimeMillis
         Reading from a file
         Writing to a log file
 
-
 Use Dispatchers.IO for any task where the app waits for something external (like internet or disk)
 and doesn’t compute much itself
 
@@ -41,7 +40,6 @@ private suspend fun type1() {
 }
 
 /*
-
 Output:
         Running on thread: DefaultDispatcher-worker-6
         Running on thread: DefaultDispatcher-worker-3
@@ -53,7 +51,6 @@ Output:
         Running on thread: DefaultDispatcher-worker-5
         Running on thread: DefaultDispatcher-worker-59
         .....
-
  */
 
 private suspend fun type2() = coroutineScope {
@@ -66,7 +63,8 @@ private suspend fun type2() = coroutineScope {
 }
 
 /*
-* Dispatchers.Default and Dispatchers.IO share the same pool of threads.
+Dispatchers.Default and Dispatchers.IO share the same pool of threads.
+
 Output:
         DefaultDispatcher-worker-1
         DefaultDispatcher-worker-1
@@ -75,7 +73,11 @@ For a clear picture, please find image in images/7_CoroutineDispatchers_3_io.png
 * */
 
 suspend fun main() {
-    //type1()
+    type1()
+    println()
+    println()
+    println()
+    println()
     type2()
 }
 

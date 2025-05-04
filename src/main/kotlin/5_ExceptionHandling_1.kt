@@ -31,7 +31,7 @@ private suspend fun type1() = coroutineScope {
 * parent(line 6). The parent(line 6) cancel itself and all its children(line 12 not line 17, as it is already
 * completed by that time), then it propagates the exception to its parent(coroutineScope, line 5)., which again,
 * then cancel itself and its children(line 23), then it propagates the exception to it's parent(runblocking line 38),
-* Since, runblocking is a root coroutine(that has no parent), So it ends the program here, after caneclling its
+* Since, runblocking is a root coroutine(that has no parent), So it ends the program here, after cancelling its
 * child coroutine (line 41), else it also go to its parent
 * */
 

@@ -5,7 +5,7 @@ import kotlin.coroutines.Continuation
 import kotlin.coroutines.resume
 
 /*
-* Dispatchers.Unconfined: The coroutine starts in the current thread but can resume in any thread later
+Dispatchers.Unconfined: The coroutine starts in the current thread but can resume in any thread later
 
 When you use:
     a)The coroutine starts immediately in the same thread that launched it.
@@ -42,7 +42,7 @@ suspend fun main(): Unit =
 /*
     Output:
         Thread1
-        ggg
+        callback suspension
         (wait for 2 second)
         Thread2
         (wait for 1 second)

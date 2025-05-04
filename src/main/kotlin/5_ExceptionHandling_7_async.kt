@@ -58,7 +58,7 @@ private suspend fun type3(): Unit = supervisorScope {
 * If you use async, silencing its exception propagation to the parent is not enough. When we call await and the async
 * coroutine finishes with an exception, then await will rethrow it.
 *
-* When exception is thrown(line 38), it is silenced, due to use of supervisor scope(line 36) as parent
+* When exception is thrown(line 39), it is silenced, due to use of supervisor scope(line 36) as parent
 * On using await with async(line 48), it throws the exception, that's why we use the try catch(line 47), else
 * it will crash the application. Due to use of try catch with asyncException.await, asyncNormal.await is not
 * affected

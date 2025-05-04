@@ -39,5 +39,5 @@ Disadvantage	                                    Explanation
 ❌ Not reentrant	                                A coroutine can deadlock if it tries to acquire the same mutex twice without releasing.
 ❌ Still needs discipline	                        If you forget to unlock() manually, you can get stuck forever (use withLock to avoid this).
 ❌ Slower than atomics for very simple operations	If you're only incrementing a number, AtomicInt is much faster and non-blocking.
-❌ More overhead	C                               ontext switches and suspension make it less performant than lock-free algorithms.
+❌ More overhead	                                Context switches and suspension make it less performant than lock-free algorithms.
 * */

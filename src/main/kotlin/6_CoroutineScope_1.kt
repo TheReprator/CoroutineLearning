@@ -13,11 +13,13 @@ import java.lang.Exception
 private fun type1() = runBlocking {
 
     val a = coroutineScope {
+        println("type1: inside a")
         delay(3000)
         10
     }
     println("a is calculated")
     val b = coroutineScope {
+        println("type1: inside b")
         delay(5000)
         20
     }
@@ -26,8 +28,8 @@ private fun type1() = runBlocking {
 }
 
 /*
-* Here, when a new coroutine is created with coroutineScope(line 14, line 19). It suspends it's immediate parent
-* runblocking(line 13,18), while coroutineScope is being executed(line 14, line 19), this what statement at line 8-10 want's to convey
+* Here, when a new coroutine is created with coroutineScope(line 15, line 19). It suspends it's immediate parent
+* runblocking(line 13,18), while coroutineScope is being executed(line 15, line 19), this what statement at line 8-10 want's to convey
 * */
 
 /*
@@ -43,30 +45,30 @@ private suspend fun longTask() = coroutineScope {
     launch {
         delay(2000)
         val name = coroutineContext[CoroutineName]?.name
-        println("[$name] Finished task 1")
+        println("type2: [$name] Finished task 1")
     }
     launch {
         delay(4000)
         val name = coroutineContext[CoroutineName]?.name
-        println("[$name] Finished task 2")
+        println("type2: [$name] Finished task 2")
     }
 
     launch {
         delay(1500)
         val name = coroutineContext[CoroutineName]?.name
-        println("[$name] Finished task 3")
+        println("type2: [$name] Finished task 3")
     }
 }
 
-private fun type2() = runBlocking(CoroutineName("Parent")) {
-    println("Before")
+private fun type2() = runBlocking(CoroutineName("Parent coroutineScope")) {
+    println("type2: Before")
     longTask()
-    println("After")
+    println("type2: After")
 }
 /*
 * We can see that “After” will be printed at the end because coroutineScope(line 41) will not finish until all its
-* children (line 42, 47, 53) are finished. Also, CoroutineName(line 60) is properly passed from parent to child, which
-* clarifies the statement from line 34-37,
+* children (line 45, 50, 56) are finished. Also, CoroutineName(line 63) is properly passed from parent to child, which
+* clarifies the statement from line 38-41,
 *           Whereas with custom job, supervisorJob, like in example below,
 *       2_Job_4_ParentChildRelationShip.kt
 *       3_JobCancel_1.kt
@@ -87,23 +89,23 @@ private suspend fun longTaskCancellation() = coroutineScope {
     launch {
         delay(1000)
         val name = coroutineContext[CoroutineName]?.name
-        println("[$name] Finished task 1")
+        println("type3: [$name] Finished task 1")
         throw Exception("tezt")
     }
     launch {
         delay(2000)
         val name = coroutineContext[CoroutineName]?.name
-        println("[$name] Finished task 2")
+        println("type3: [$name] Finished task 2")
     }
     supervisorScope {
         delay(4000)
         val name = coroutineContext[CoroutineName]?.name
-        println("[$name] Finished task 3")
+        println("type3: [$name] Finished task 3")
     }
 }
 
 private fun type3()= runBlocking {
-    val job = launch(CoroutineName("Parent")) {
+    val job = launch(CoroutineName("Parent coroutineScope")) {
         longTaskCancellation()
     }
     delay(1500)
@@ -111,11 +113,11 @@ private fun type3()= runBlocking {
 }
 
 /*
-* Here, at line 104, we get a reference of job from a coroutine, which include coroutineScope(line 84), as their child.
-* So, whenever a parent job is cancelled(line 107) or an exception is thrown inside coroutineScope,
-* coroutineScope(line 85) will cancel itself and cancel it's unfinished children(line 91,96), irrespective of scope like,
-* supervisorScope(line 96), which is also cancelled, due to being child of coroutineScope, which proves our
-* statement line 38, line 81-83
+* Here, at line 108, we get a reference of job from a coroutine, which include coroutineScope(line 88), as their child.
+* So, whenever a parent job is cancelled(line 112) or an exception is thrown inside coroutineScope,
+* coroutineScope(line 88) will cancel itself and cancel it's unfinished children(line 95,100), irrespective of scope like,
+* supervisorScope(line 100), which is also cancelled, due to being child of coroutineScope, which proves our
+* statement line 41, line 84-86
 * */
 
 fun main() = runBlocking {

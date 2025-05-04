@@ -2,9 +2,9 @@ package org.example
 
 import kotlinx.coroutines.*
 
-fun main() = runBlocking {
+fun main(): Unit = runBlocking {
     type()
-   // typeAsynch()
+    //typeAsynch()
 }
 
 private suspend fun type() = runBlocking {

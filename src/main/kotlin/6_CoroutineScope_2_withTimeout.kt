@@ -107,7 +107,13 @@ private suspend fun withTimeoutExecutionType3(): Unit= coroutineScope {
 
 
 fun main(): Unit= runBlocking {
-    //withTimeoutExecutionType1()
-    //withTimeoutExecutionType2()
+    withTimeoutExecutionType1()
+    println()
+    println()
+    println()
+    withTimeoutExecutionType2()
+    println()
+    println()
+    println()
     withTimeoutExecutionType3()
 }

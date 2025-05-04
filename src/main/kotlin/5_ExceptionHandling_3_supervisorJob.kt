@@ -48,7 +48,7 @@ fun main(): Unit = runBlocking {
     type1()
     println()
     println()
-    //type2()
+    type2()
 }
 
 private suspend fun type2(): Unit = coroutineScope {

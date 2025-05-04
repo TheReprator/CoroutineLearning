@@ -5,7 +5,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-fun main(args: Array<String>) = runBlocking {
+fun main(args: Array<String>): Unit = runBlocking {
     val job1 = Job()
     launch(job1) {
         repeat(3) {
@@ -25,12 +25,9 @@ fun main(args: Array<String>) = runBlocking {
     launch(job1) {
         println("will not execute, as job is already completed!")
     }
-
-    //
-    fun main(args: Array<String>){}
 }
 /*
 * Once the job is complete(or cancelled), it can't be used for any purpose.
-* Once coroutine receive the complete order(line 20), it just wait for completion of all this child to complete, its all pending job or task and
+* Once coroutine receive the complete order(line 20), it just wait for completion of all this child to complete and
 * refrain from taking any further order(line no 25)
 * */

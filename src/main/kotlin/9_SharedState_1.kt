@@ -24,11 +24,11 @@ suspend fun massiveRun(action: suspend () -> Unit) =
     }
 
 /*
-* The result is not 1000 because the counter++ operation is not thread-safe.
+The result is not 1,00,000 because the counter++ operation is not thread-safe.
 
 Here's what’s happening:
 Your code creates 100 coroutines, each of which increments the counter 1000 times — so ideally,
-you expect 100 × 1000 = 100000 increments.
+you expect 100 × 1000 = 1,00,000 increments.
 
 However, counter++ is a compound operation, which involves:
 Reading the current value.
@@ -55,7 +55,6 @@ synchronized is a blocking lock that ensures only one thread at a time can execu
 It's like putting a "Do Not Disturb" sign on a shared resource — if Thread A is inside the block, all other threads
 have to wait until it's done.
 
-
 * This solution works, but there are a few problems.
 *   The biggest one is, that inside synchronized block you cannot use suspending functions.
 *   The second one is, that this block is blocking threads when a coroutine is waiting for its turn.
@@ -64,6 +63,7 @@ have to wait until it's done.
 fun main() = runBlocking {
     println("Problem statement")
     problemStatement()
+    println()
     println()
     counter = 0
     println("Counter reset to $counter for race condition with synchronized")

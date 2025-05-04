@@ -21,12 +21,9 @@ Dispatchers: It is basically a mechanism, which is letting us decide on which th
                 In Kotlin coroutines, CoroutineContext determines on which thread a certain coroutine will run.
 
 Default dispatcher: If you don’t set any dispatcher, the one chosen by default is Dispatchers.Default, which is designed
-    to run CPU-intensive operations. It has a pool of threads with a size equal to the number of cores in the machine
-    your code is running on (but not less than two).
+    to run CPU-intensive operations. It has a pool of threads with a size equal to the number of cores in the machine.
         At least theoretically, this is the optimal number of threads, assuming you are using these threads efficiently,
      i.e., performing CPU-intensive calculations and not blocking them.
-
-
 
          Output:
             Running on thread: DefaultDispatcher-worker-1

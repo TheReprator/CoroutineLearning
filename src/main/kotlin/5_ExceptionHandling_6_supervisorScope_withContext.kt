@@ -38,12 +38,12 @@ WithContext: It is basically a function, which is used to change the coroutine c
 withContext(SupervisorJob())(Line 6) does not create a SupervisorScope. Instead, it inherits the parent scope
 (which is runBlocking in this case, line 5).
 
-When any child coroutine inside withContext throws an exception(line 13), it cancels all sibling coroutines(line 17, line7(already complete))
+When any child coroutine inside withContext throws an exception(line 14), it cancels all sibling coroutines(line 17, line7(already complete))
 and propagates the exception up to the parent runBlocking scope(line 5), which then cancel all its children(lin 23,
 not line 28(already complete)) and then itself, and then throws the exception to caller main, which causes the program
 to crash
 
-We can omit line 23, as WithContext run on same builder, so no need to wait.
+We can omit line 24, as WithContext run on same builder, so no need to wait.
 */
 
 
@@ -82,12 +82,15 @@ supervisorScope does not support changing context. If you need to both change co
 you need to wrap supervisorScope with withContext.
 
 Here, withContext(Dispatchers.IO) (line 51), just changed the context to io but running on same coroutine,
-But later we created a separate scope(line 51) from parent, so any exception thrown in child of coroutine
+But later we created a separate scope(line 52) from parent, so any exception thrown in child of coroutine
 will not be propagated to parent, exception will be silenced in direct child for supervisor scope child only(line 58)
 * */
 
 
 fun main(): Unit = runBlocking {
     //superVisorScopeWithContextType1()
+    println()
+    println()
+    println()
     superVisorScopeWithContextType2()
 }

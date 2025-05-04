@@ -53,17 +53,17 @@ private suspend fun type1() {
 }
 /*
   Issues:
-* Firstly, this launch(line 40) does nothing here because coroutineScope needs to await its completion anyway.
+* Firstly, this launch(line 41) does nothing here because coroutineScope needs to await its completion anyway.
 * So if you are showing a progress bar or some other operation before and after line 51, the user needs to wait
-* until this launch builder is finished as well due to its boundness in coroutine scope(line 18),
+* until this launch builder is finished as well, due to its boundness in coroutine scope(line 18),
 * It delays the user interaction by 1 second for end user to start interaction, which is waste, as
 * analytics could have done in separate scope, due to non-importance nature of end user
 *
 *
 * Second issue(cancellation): Coroutines are designed (by default) to cancel other operations when there is an exception.
-* This is great for essential operations like If profile(uncomment line 31) has an exception, we should cancel name and
+* This is great for essential operations like If profile(uncomment line 32) has an exception, we should cancel name and
 * friends because their response would be useless anyway. However, canceling a process(line 18) just because an
-* analytics call(uncomment line 43) has failed does not make much sense. As analytics is never a priority for end user
+* analytics call(uncomment line 44) has failed does not make much sense. As analytics is never a priority for end user
 *
 * */
 
@@ -144,6 +144,9 @@ private suspend fun type2() {
 * and it takes max 3 seconds(line 106) in one of its builders
 * */
 fun main(): Unit = runBlocking {
-    //type1()
+    type1()
+    println()
+    println()
+    println()
     type2()
 }

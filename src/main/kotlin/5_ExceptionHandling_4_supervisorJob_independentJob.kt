@@ -63,7 +63,7 @@ private suspend fun type4(): Unit = coroutineScope {
 
     launch(job) {
         delay(1500)
-        println("type4: parent coroutine builder")
+        println("type4: parent coroutine builder 1500")
     }
 
     job.children.forEach {
@@ -79,8 +79,14 @@ private suspend fun type4(): Unit = coroutineScope {
 * builder of that job(line 59(already finished), line 64)
 * */
 fun main(): Unit = runBlocking {
-   /* type1()
-    type2()*/
-    //type3()
-   type4()
+    type1()
+    println()
+    println()
+    type2()
+    println()
+    println()
+    type3()
+    println()
+    println()
+    type4()
 }

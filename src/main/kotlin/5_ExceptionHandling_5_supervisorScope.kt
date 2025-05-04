@@ -31,7 +31,10 @@ private suspend fun type1(): Unit = coroutineScope {
 
 fun main(): Unit = runBlocking {
     type1()
-    //type2()
+    println()
+    println()
+    println()
+    type2()
 }
 
 private suspend fun type2(): Unit = coroutineScope {
@@ -65,7 +68,7 @@ private suspend fun type2(): Unit = coroutineScope {
 }
 
 /*
-* If an exception occurs in a child of a child(line 44), it cancel itself(line 42) and its child(line 45),
-* it propagates to the parent of this child(line 39), destroys it(line 39) and all it's subsequent child(line 50),
+* If an exception occurs in a child of a child(line 47), it cancel itself(line 45) and its child(line 48),
+* it propagates to the parent of this child(line 42), destroys it(line 42) and all it's subsequent child(line 53),
 * and only then gets ignored.
 * */

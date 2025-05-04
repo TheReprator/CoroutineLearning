@@ -17,6 +17,7 @@ private suspend fun CoroutineScope.neverEndingJob() {
     val jobIndependent = Job()
     launch(jobIndependent) {
         delay(1000L)
+
         println("child job running, job")
     }
 

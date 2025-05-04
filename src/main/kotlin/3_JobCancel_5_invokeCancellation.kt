@@ -28,10 +28,10 @@ suspend fun main() = coroutineScope {
 }
 
 /*
-* Job invokeOnCompletion(line 12) is called synchronously during cancellation, so we did not control the thread
+* Job invokeOnCompletion(line 11) is called synchronously during cancellation, so we did not control the thread
 * in which it is running
 *
-* Here, builder(line 16) will not run, as the job is already completed. Builder(line 21) is independent, as we are
+* Here, builder(line 15) will not run, as the job is already completed. Builder(line 20) is independent, as we are
 * not sure, whether it will run or not, as during cancellation, we did not control the thread in which it is running
 *
 * */

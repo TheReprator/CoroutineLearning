@@ -21,7 +21,7 @@ private suspend fun nonSuspendingCancellation() = coroutineScope {
 * Since there is no suspension point in builder(line 7), builder(line 7) will not cancel itself, despite getting
 * the call(line 15) to cancel itself. So, it will complete itself fully
 *
-* Thread.sleep(200L) is not a suspending function, so that's why coroutine didnot get a chance to canel itself
+* Thread.sleep(200L) is not a suspending function, so that's why coroutine did not get a chance to cancel itself
 * */
 
 
@@ -42,7 +42,7 @@ private suspend fun nonSuspendingCancellationSuspension() = coroutineScope {
 
 /*
 * Yield(line 33): It is basically a suspension function, which suspends the coroutine and return the same instantly.
-*      This gives and opportunity to coroutines to do whatever is needed during suspension(resuming, cancellation,
+*      This provides an opportunity to coroutines to do whatever is needed during suspension(resuming, cancellation,
 * changing the thread during dispatcher)
 * */
 
@@ -86,8 +86,8 @@ private suspend fun nonSuspendingCancellationSuspensionEnsureActive() = coroutin
 * active. It is very lighter
 *
 * The result of ensureActive and Yield is very similar. But there are very different as ensureActive is called on
-* Coroutine Scope while yield is normal suspending function. Alwasy use ensureActive, And use Yield in cpu intensive
-* task
+* Coroutine Scope while yield is a normal suspending function. Always use ensureActive, And use Yield in a cpu
+* intensive task
 * */
 
 suspend fun main() = coroutineScope {
